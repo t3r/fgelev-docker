@@ -13,7 +13,7 @@ RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true && \
   libopenscenegraph-dev \
   zlib1g-dev \
   ca-certificates \
-  cmake 
+  cmake
 
 # plain simgear w/o build env
 FROM simgear-builder AS simgear
