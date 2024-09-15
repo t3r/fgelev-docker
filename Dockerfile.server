@@ -1,0 +1,14 @@
+FROM torstend/fgelev
+USER root
+
+RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true && \
+  apt-get update && apt-get install -y --no-install-recommends \
+  nodejs npm
+
+WORKDIR /app
+COPY server/package.json .
+RUN npm install
+COPY server/*.js .
+USER nobody
+ENV FG_SCENERY=/fg_scenery
+ENTRYPOINT [ "/usr/bin/node", "index.js" ]
