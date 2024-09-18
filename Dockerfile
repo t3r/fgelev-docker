@@ -55,10 +55,10 @@ RUN git clone --depth 1 -b release/2020.3 --single-branch https://git.code.sf.ne
     strip /usr/local/bin/fgelev
 
 # image for fgelev w/o build environment
-FROM debian:bookworm AS fgelev
+FROM debian:bookworm-slim AS fgelev
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true && \
   apt-get update && apt-get install -y --no-install-recommends \
-  openscenegraph && \
+  libopenscenegraph161 && \
   apt-get clean
 
 COPY --from=fgelev-build /usr/local/bin/fgelev /usr/local/bin
